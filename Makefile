@@ -41,13 +41,13 @@ knowledge/vectorize.clp: preprocess.xclp
 	$(xclp) $<
 
 testprolog: prolog_all
-	prove -Ilib xprolog/*.t
+	prove -I../xclips/lib -Ilib xprolog/*.t
 
 testall: prolog_all clips_all
-	prove -Ilib t/*.t xprolog/*.t
+	prove -I../xclips/lib -Ilib t/*.t xprolog/*.t
 
 test: clips_all
-	prove -Ilib t/*.t
+	prove -I../xclips/lib -Ilib t/*.t
 
 clean:
 	$(rm_f) xprolog/*.pro xprolog/0*.xpro 0*.xclp *.clp *.vrg \
