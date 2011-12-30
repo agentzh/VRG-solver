@@ -1,19 +1,22 @@
 /* CSS File for Modern Browsers */
-
 /* also, perl-ns4.css stops ns4 from crashing. */
 
-body {
-  font: .9em/1.5em verdana, arial, sans-serif, »ªÎÄÏ¸ºÚ;
+/* Originates from svn:pugs/docs/feather/perl.css */
+
+BODY {
+  font-family:helvetica,sans-serif;
+  font-size:14px;
+  font-weight:normal;
   width: 730px;
   background-color: #FFF;
-  color: black;
+  margin: 5px;
 }
 
-ul{
+UL{
   list-style-type: square;
 }
 
-a {
+A {
   color: #003399;
   /* color: #0055BB; */
   text-decoration: none;
@@ -32,22 +35,22 @@ a {
   color: #DD0000;
 }
 
-a:visited {
+A:visited {
   color: #663399;
 }
 
 /* specify link and visited so the 'hover' style doesn't apply to
    other links, like those which are just NAME anchors. */
-a:link:hover {
+A:link:hover {
   text-decoration: underline;
   color: #8B0000; /* dark red */
 }
-a:visited:hover {
+A:visited:hover {
   text-decoration: underline;
   color: #8B0000; /* dark red */
 }
 
-td {
+TD {
   font-size:14px;
 }
 
@@ -75,16 +78,10 @@ td {
      line-spacing: 2px; */
 }
 
-@media print { #nav { display: none; } } 
-
-@media print { .noprint { display: none; } }
-
 /* Navigation */
 #NAV {
-  font-size: .8em;
   width: 180px;
-  /* don't use an absolute font size here */
-  /* font-size:12px; */
+  font-size:12px;
   margin:0em; 
   margin-top: -1px; 
   padding:7px;
@@ -103,8 +100,7 @@ td {
 }
 
 #MAIN {
-  /* don't use an absolute font size here */
-  /* font-size:12px; */
+  font-size:12px;
   margin-top:1em;
   margin-left:1em;
 }
@@ -154,11 +150,11 @@ td {
 .SMALL  {
   font-size: xx-small;
 }
-
+/*
 .TITLE  {
   color: #ccff66;
 }
-
+*/
 .ITEMS  {
   font-size:14px;
 }
@@ -207,7 +203,7 @@ td {
   margin-top: -10px
 }
 
-hr      {
+HR      {
   color: #191970;
   text-align: center;  /* what does this do on a HR? */
   padding-top: .5em;
@@ -219,23 +215,23 @@ hr      {
   /* margin-top: -5em; */
 }
 
-h3     {
+H3     {
   color: #000;
   font-size: 14px;
   font-family:verdana,helvetica,sans-serif;
   font-weight: bolder;
 }
 
-tr      {
+TR      {
   vertical-align: top;
 }
 
-td.NOVERTPAD {
+TD.NOVERTPAD {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-img.border {
+IMG.border {
   border-width: 1px;
   border-color: #191970;
   border-style: solid;
@@ -249,7 +245,7 @@ img.border {
   text-align: justify;
 }
 
-p.fancyp:first-letter { 
+P.fancyp:first-letter { 
   font-size: 215%; float: left; font-family: serif; padding: 1px;
 }
 
@@ -262,3 +258,22 @@ p.fancyp:first-letter {
   padding: 10px 0 10px 0;
   margin-top: 10px;
 }
+
+.smartlink {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  background-color: #def;
+}
+
+.snip {
+  font-family: "Courier New", Courier, Monospace;
+  font-size: 12px;
+  line-height: 0.8em;
+}
+
+.smartlink-file {
+  text-align: right;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+

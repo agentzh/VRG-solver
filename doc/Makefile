@@ -1,4 +1,4 @@
 all: Overview.html KB.html
 
 %.html: %.pod
-	podhtm -s perl.css $<
+	podhtm.pl -o $@ --css perl.css $<

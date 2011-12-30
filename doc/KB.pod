@@ -1,10 +1,12 @@
+=encoding utf-8
+
 =head1 NAME
 
-KB - VRG ֪ʶ����
+KB - VRG 知识库简介
 
 =head1 AUTHOR
 
-Agent Zhang (���ഺ) E<lt>agentzh@gmail.comE<gt>
+Agent Zhang (章亦春) E<lt>agentzh@gmail.comE<gt>
 
 =head1 VERSION
 
@@ -15,88 +17,88 @@ Agent Zhang (���ഺ) E<lt>agentzh@gmail.comE<gt>
 
 =head1 DESCRIPTION
 
-��ƪ�ĵ�����Ҫ�ؽ���һ�� VRG ���弸�ζ���֤��ϵͳ��֪ʶ�⡣
+这篇文档将简要地介绍一下 VRG 立体几何定性证明系统的知识库。
 
-=head1 �Ƿ�Լ��
+=head1 记法约定
 
-VRG ֪ʶ��ʹ�� XClips ���Խ���������Ϊ����������ڱ��ĵ��еĹ������ʵʾ����
-ʹ�� XClips �Ƿ���VRG ���������µ������������
+VRG 知识库使用 XClips 语言进行描述。为方便起见，在本文档中的规则和事实示例亦
+使用 XClips 记法。VRG 定义了如下的特有运算符：
 
 =over
 
 =item *
 
-ǰ׺ (prefix) C<\> ��ʾν���� C<line>������ C<\a> ��ͬ�� C<line(a)>.
+前缀 (prefix) C<\> 表示谓词名 C<line>，例如 C<\a> 等同于 C<line(a)>.
 
 =item *
 
-ǰ׺ C<#> ��ʾν���� C<plane>������ C<#alpha> ��ͬ�� C<plane(alpha)>.
+前缀 C<#> 表示谓词名 C<plane>，例如 C<#alpha> 等同于 C<plane(alpha)>.
 
 =item *
 
-��׺ (infix) C<T> ��ͬ��ν���� C<orthogonal>����ʾ�������ߴ�ֱ��ϵ��
+中缀 (infix) C<T> 等同于谓词名 C<orthogonal>，表示正交或者垂直关系。
 
 =item *
 
-��׺ C<//> ��ͬ��ν���� C<parallel>����ʾƽ�й�ϵ��
+中缀 C<//> 等同于谓词名 C<parallel>，表示平行关系。
 
 =item *
 
-��׺ C<X> ��ͬ��ν���� C<cross>, ��ʾ�Ȳ�ƽ��Ҳ����ֱ�Ĺ�ϵ���� VRG �ڲ������У���
-���ֹ�ϵΪ ��б����ϵ������
+中缀 C<X> 等同于谓词名 C<cross>, 表示既不平行也不垂直的关系（在 VRG 内部术语中，称
+此种关系为 “斜交关系”）。
 
 =item *
 
-��ǰ׺ (infix-prefix) C<~> ��ʾν����ǰ׺ C<not_>, ���� C<a [~//] b> �ȼ���
+中前缀 (infix-prefix) C<~> 表示谓词名前缀 C<not_>, 例如 C<a [~//] b> 等价于
 C<space_not_parallel(a, b)>.
 
 =item *
 
-�а�Χ׺ (infix-circumfix) C<[ ]> ��ʾ���弸�οռ��еĹ�ϵ������ C<a [//] b> �͵�ͬ��ν��
-C<space_parallel(a, b)>���� C<a [T] b> �͵�ͬ��ν�� C<space_orthogonal(a, b)>.
+中包围缀 (infix-circumfix) C<[ ]> 表示立体几何空间中的关系，比如 C<a [//] b> 就等同于谓词
+C<space_parallel(a, b)>，而 C<a [T] b> 就等同于谓词 C<space_orthogonal(a, b)>.
 
 =item *
 
-�а�Χ׺ C<< < > >> ��ʾ�����ռ��еĹ�ϵ������ C<< a <//> b >> �ȼ���ν��
-C<vector_parallel(a, b)>, �� C<< a <~T> b >> ��ȼ���ν�� C<vector_not_orthogonal(a, b)>.
+中包围缀 C<< < > >> 表示向量空间中的关系，例如 C<< a <//> b >> 等价于谓词
+C<vector_parallel(a, b)>, 而 C<< a <~T> b >> 则等价于谓词 C<vector_not_orthogonal(a, b)>.
 
 =back
 
-�ر�أ����ʺ� (C<?>) ��ʼ�ı�ʶ��Ϊ XClips �������� C<?alpha>, C<?m> ֮�ࣻ����Ϊ��������
-C<beta> �� C<l>.
+特别地，以问号 (C<?>) 起始的标识符为 XClips 变量，如 C<?alpha>, C<?m> 之类；否则为常量，如
+C<beta> 和 C<l>.
 
-����һ�����ڹ��򣬶�����һ���������ʵ�С�
+变量一般用于规则，而常量一般出现在事实中。
 
-��Щ��ʵ���� XClips ���Ե��﷨���й� XClips ���Եĸ�����Ϣ����μ��ҵ�"Introduction to XClips"
-�����Ļõ�Ƭ��
+这些其实都是 XClips 语言的语法。有关 XClips 语言的更多信息，请参见我的"Introduction to XClips"
+讲座的幻灯片：
 
 L<http://perlcabal.org/~agentzh/slides/xclips/xclips.pdf>
 
-=head1 ֪ʶ��Ľ�ģ����
+=head1 知识库的建模对象
 
-VRG ֪ʶ������Ͽ��Է�Ϊ�������֣�һ�������弸�οռ��е����������������ռ���
-���������������������ռ�֮��Ĺ�ϵӳ�䡣
+VRG 知识库大体上可以分为三个部分，一是在立体几何空间中的推理，二是向量空间中
+的推理，三是在这两个空间之间的关系映射。
 
-=head2 ���弸�οռ�
+=head2 立体几何空间
 
-�����弸�οռ��У��������о������ǿռ�ֱ�ߺ�ƽ�����������弸��Ԫ���Լ�����֮��Ĺ�ϵ��
-��Щ��ϵ����
+在立体几何空间中，基本的研究对象是空间直线和平面这两种立体几何元素以及它们之间的关系。
+这些关系包括
 
-=head3 ��Ԫ��ϵ
+=head3 二元关系
 
 =over
 
-=item ���߹�ϵ
+=item 线线关系
 
-�������߹أ�VRG ���������߹�ϵ�е�ƽ�й�ϵ����ֱ��ϵ��б����ϵ���Լ����ǵ�������ϵ������
-��ƽ�У�����ֱ����б���ȵȡ�
+对于线线关，VRG 仅处理线线关系中的平行关系，垂直关系，斜交关系，以及它们的衍生关系，例如
+不平行，不垂直，不斜交等等。
 
-=item �����ϵ
+=item 线面关系
 
-VRG �����������ϵ�е�����ƽ�У����洹ֱ������б�����������ϣ��Լ����ǵ�������ϵ������
-���治��ֱ���߲������ϵȵȡ�
+VRG 仅处理线面关系中的线面平行，线面垂直，线面斜交，线在面上，以及它们的衍生关系，例如
+线面不垂直，线不在面上等等。
 
-���磺
+比如：
 
     /* line a is parallel to line b */
     \a, \b, a [//] b.
@@ -107,11 +109,11 @@ VRG �����������ϵ�е�����ƽ�У����洹ֱ������б�����������ϣ��Լ����ǵ�������ϵ
     /* line e is not parallel to line f */
     \e, \f, e [~//] f.
 
-=item �����ϵ
+=item 面面关系
 
-VRG �����������ϵ�е�����ƽ�У����洹ֱ������б�����Լ����ǵ�������ϵ���������治ƽ�еȵȡ�
+VRG 仅处理面面关系中的面面平行，面面垂直，面面斜交，以及它们的衍生关系，例如面面不平行等等。
 
-���磺
+比如：
 
     /* line l is parallel to plane alpha */
     \l, #alpha, l [//] alpha.
@@ -121,205 +123,205 @@ VRG �����������ϵ�е�����ƽ�У����洹ֱ������б�����Լ����ǵ�������ϵ����������
 
 =back
 
-=head3 ��Ԫ��ϵ
+=head3 三元关系
 
 =over
 
-=item �����ཻ��һ��
+=item 线线相交于一点
 
-��������������ʵ
+比如下面这条事实
 
     \a, \b, meet(a, b, A).
 
-��ָʾ��ֱ�� a ��ֱ�� b �ཻ�ڵ� A.
+便指示了直线 a 和直线 b 相交于点 A.
 
-=item �������ϵ�ͶӰ
+=item 线在面上的投影
 
-�ù�ϵ��ָ��һ��ֱ����һ��ƽ���ϵ�ͶӰ����һ��ֱ�ߣ���㣩
+该关系是指，一条直线在一个平面上的投影是另一条直线（或点）
 
-�������� XClips ��ʵ
+下面这条 XClips 事实
 
     \a, #A, \b, project(a, A, b).
 
-��ָ����ֱ�� a ��ƽ�� A �ϵ�ͶӰ�� b.
+就指明了直线 a 在平面 A 上的投影是 b.
 
-=item �����ཻ��һ��
+=item 线面相交于一点
 
-��������������ʵ
+比如下面这条事实
 
     \a, #alpha, meet(a, alpha, P).
 
-ָʾֱ�� a ��ƽ�� alpha �ཻ�� P.
+指示直线 a 与平面 alpha 相交点 P.
 
 =back
 
-VRG �������ռ��е�����������Ҫ�ǽ����ӵĹ�ϵ�ֽ�Ϊ������ϵ�����߽�������ϵ�ϳ�Ϊ���ӹ�ϵ��
+VRG 在立几空间中的推理任务主要是将复杂的关系分解为基本关系，或者将基本关系合成为复杂关系。
 
-=head2 �����ռ�
+=head2 向量空间
 
-���������弸��Ԫ�صĳ����ʾ������ѧ�����Ͻ��������ռ��е�ƽ���������ռ��ж�Ӧ�䡰����������
-�������ռ��е�ֱ���������ռ��ж�Ӧ�䡰������������
+向量是立体几何元素的抽象表示。从数学语义上讲，立几空间中的平面在向量空间中对应其“法向量”，
+而立几空间中的直线在向量空间中对应其“方向向量”。
 
-�����ռ��еĹ�ϵ����������֤��ϵͳ�ĺ��ġ�VRG ����ͨ�������е�������ϵ�Ƴ��µ�������ϵ����
-��ӵش����еļ��ι�ϵ�Ƴ��µļ��ι�ϵ�ġ�
+向量空间中的关系演绎是整个证明系统的核心。VRG 正是通过从已有的向量关系推出新的向量关系，来
+间接地从已有的几何关系推出新的几何关系的。
 
-�������ռ��н��������й�ϵ��
+在向量空间中仅讨论下列关系：
 
 =over
 
-=item ƽ�й�ϵ
+=item 平行关系
 
-����
+例如
 
     a <//> b
 
-��ʾ���� a ������ b ƽ�С�
+表示向量 a 与向量 b 平行。
 
-=item ��ֱ��ϵ
+=item 垂直关系
 
-����
+例如
 
     a <T> b
 
-��ʾ���� a ������ b ��ֱ��
+表示向量 a 与向量 b 垂直。
 
-=item б����ϵ
+=item 斜交关系
 
-����
+例如
 
-����
+例如
 
     a <X> b
 
-��ʾ���� a ������ b б����
+表示向量 a 与向量 b 斜交。
 
 =back
 
-=head1 ������������
+=head1 基本假设条件
 
-Ŀǰ��֪ʶ��ʹ�������м���������
+目前，知识库使用了下列假设条件：
 
 =over
 
 =item *
 
-��һƽ������һƽ������Ʋ�ͬ������Ϊ��ƽ�治�غϡ���֪ʶ�����������ġ�����ƽ�桱���⡣��
+若一平面与另一平面的名称不同，则认为两平面不重合。（知识库自身创建的“辅助平面”除外。）
 
 =item *
 
-��һֱ������һֱ�ߵ����Ʋ�ͬ������Ϊ��ֱ�߲��غϡ���֪ʶ�����������ġ�����ֱ�ߡ����⡣��
+若一直线与另一直线的名称不同，则认为两直线不重合。（知识库自身创建的“辅助直线”除外。）
 
 =back
 
-ȡ������������������Ȼ���߼��ϸ�������������ʵ���ԵĽǶ��Ͻ��������ɱ����ʹ֪ʶ����
-��������š�a �� b ���غϡ������Ķ��ԣ�ͬʱҲ���������û�������֪�����ĸ�������������
-��Ϊ����֪������������޷���֤�Ŀ����ԡ�
+取消这两条基本假设虽然从逻辑上更加完整，但从实用性的角度上讲，将不可避免地使知识库中
+到处充斥着“a 与 b 不重合”这样的断言，同时也会增加了用户输入已知条件的负担，增加了因
+人为的已知条件不充足而无法求证的可能性。
 
-=head1 ֪ʶ�����������
+=head1 知识库的推理流程
 
-֪ʶ��������Ϸ�Ϊ 4 �� CLIPS ģ��(module)�����Ӧ�������̵� 4 ��׶Σ�
+知识库从物理上分为 4 个 CLIPS 模块(module)，亦对应推理流程的 4 大阶段：
 
 =over
 
-=item Vectorize ģ��
+=item Vectorize 模块
 
-Vectorize ģ������ F<preprocess.xclp> �� F<vectorize.xclp> �������ļ�ʵ�ֵġ�
-��ģ�鸺����ɴӼ��οռ��ڵ����߹�ϵ�������ϵ�������ϵ���������ӹ�ϵ��
-�����ռ��ڵ�������ϵ��ת����
+Vectorize 模块是由 F<preprocess.xclp> 和 F<vectorize.xclp> 这两个文件实现的。
+该模块负责完成从几何空间内的线线关系、线面关系、面面关系及其他复杂关系到
+向量空间内的向量关系的转换。
 
-=item Eval ģ��
+=item Eval 模块
 
-Eval ģ������ F<vector-eval.xclp> �ļ�ʵ�֡���ģ�鸺���������ռ���ִ��������
-����֪��������ϵ�����Ƴ��µ�������ϵ��
+Eval 模块是由 F<vector-eval.xclp> 文件实现。该模块负责在向量空间内执行推理，
+从已知的向量关系不断推出新的向量关系。
 
-=item AntiVectorize ģ��
+=item AntiVectorize 模块
 
-��ģ���� F<anti-vectorize.xclp> �ļ�ʵ�֡�������ִ�� Vectorize ģ��ġ����������
-�����µ�������ϵ��ԭΪ���οռ��е����߹�ϵ�������ϵ�������ϵ��
+此模块由 F<anti-vectorize.xclp> 文件实现。它负责执行 Vectorize 模块的“逆操作”，
+即将新的向量关系还原为几何空间中的线线关系、线面关系和面面关系。
 
-=item GoalMatch ģ��
+=item GoalMatch 模块
 
-GoalMatch ģ������û�������֤��Ŀ����������֪��ʵ�е�ƥ�估��صĽ��͹�����
+GoalMatch 模块完成用户给定的证明目标在所有已知事实中的匹配及相关的解释工作。
 
 =back
 
-���������Ľ��㴦��ĳ��ģ��ʱ��ֻ�����ڸ�ģ��Ĺ������ʵ���ܱ�����������
+当推理机的焦点处于某个模块时，只有属于该模块的规则和事实才能被参与推理。
 
-�й������ռ����ʵ�� Vectorize ģ�飬AntiVectorize���� GoalMatch ģ�鹲����
-�й������ռ����ʵ�� Vectorize ģ�飬Eval ģ�飬�� AntiVectorize ģ�鹲����
+有关立几空间的事实由 Vectorize 模块，AntiVectorize，和 GoalMatch 模块共享；
+有关向量空间的事实由 Vectorize 模块，Eval 模块，和 AntiVectorize 模块共享。
 
-���������еľ�����������
+推理机运行的具体流程如下
 
 =over
 
 =item *
 
-�û��������֪��������Ӧ�ġ���ʼ��ʵ�������뵽 Vectorize ģ�顣
+用户输入的已知条件所对应的“初始事实”被导入到 Vectorize 模块。
 
 =item *
 
-���������� (focus) ��Ĭ��ģ�� MAIN �л��� Vectorize ģ�飬ִ�������ռ��ڵ�
-��ϵ����͡���������������
+推理机焦点 (focus) 从默认模块 MAIN 切换至 Vectorize 模块，执行立几空间内的
+关系演算和“向量化”操作。
 
 =item *
 
-��һ��������Ϻ��ٽ��������� Eval ģ�飬ִ�������ռ��ڵĹ�ϵ���㣬�Ƴ������
-������ϵ��
+上一步运行完毕后，再将焦点移至 Eval 模块，执行向量空间内的关系演算，推出更多的
+向量关系。
 
 =item *
 
-���������� AntiVectorize ģ�飬�������µ�������ϵִ�з�����������ԭ��������
-���е����塣
+将焦点移至 AntiVectorize 模块，对所有新的向量关系执行反向量化，还原出立几空
+间中的语义。
 
 =item *
 
-���㱻�л��� GoalMatch ģ�飬ʹ���û�������֤��Ŀ���������֪��ʵ����ƥ�䣬
-�����ɽ��ͺ����ۡ�
+焦点被切换至 GoalMatch 模块，使用用户给定的证明目标对所有已知事实进行匹配，
+并生成解释和评价。
 
 =back
 
-=head1 ֪ʶ����ڲ��ṹ
+=head1 知识库的内部结构
 
-֪ʶ�������� XClips Դ�ļ����ɣ�
+知识库由下列 XClips 源文件构成：
 
 =head2 F<vrg-sugar.xclp>
 
-���ļ�������֪ʶ������ʹ�õ�����������������ǰ׺ C<\> ����׺ C<//>.
-���ļ�Ϊ֪ʶ������������ .xclp �ļ������������������ L</�Ƿ�Լ��>.
+该文件定义了知识库中所使用的特殊的运算符，例如前缀 C<\> 和中缀 C<//>.
+该文件为知识库中所有其他 .xclp 文件所包含。详情请参与 L</记法约定>.
 
-����ǰ׺ C<\> �Ķ������£�
+例如前缀 C<\> 的定义如下：
 
     prefix:<\>   line
 
-����׺ C<//> �Ķ������£�
+而中缀 C<//> 的定义如下：
 
     infix:<//>   parallel
 
 =head2 F<preprocess.xclp>
 
-���ļ������� VRG �ġ�Ԥ�������򡱡���Щ�������Ҫ�������������ռ��ڲ�
-���й�ϵ���㣬��Ŀ�����ڽ� project��ͶӰ���� meet���ཻ�������ĸ���
-��ϵת��Ϊƽ�С���ֱ֮��ļ򵥹�ϵ��ͬʱΪĳЩ������ϵ���ɡ�ͬ�������塱��
-�Լ򻯺�����ƥ�乤����
+该文件定义了 VRG 的“预处理规则”。这些规则的主要工作是在立几空间内部
+进行关系演算，其目的在于将 project（投影）和 meet（相交）这样的复杂
+关系转换为平行、垂直之类的简单关系，同时为某些基本关系生成“同构异形体”，
+以简化后续的匹配工作。
 
-����˵�������ļ��������м�������
+具体说来，此文件包含下列几条规则：
 
 =over
 
 =item *
 
-������ƽ�� C<alpha> �� C<beta> �ཻ��ֱ�� C<l> ʱ���� C<alpha> �� C<beta>
-��ƽ�У����� C<l> ͬʱ�� C<alpha> �� C<beta> ��.
+当两个平面 C<alpha> 和 C<beta> 相交于直线 C<l> 时，则 C<alpha> 与 C<beta>
+不平行，并且 C<l> 同时在 C<alpha> 和 C<beta> 上.
 
     #?alpha, #?beta, meet(?alpha, ?beta, ?l)
     => ?alpha [~//] ?beta, ?l [on] ?alpha, ?l [on] ?beta.
 
-�����ǰ׺�ʺ�(?)��ʾΪ���������ǳ�����
+这儿的前缀问号(?)表示为变量，而非常量。
 
 =item *
 
-������ֱ�� C<l> �� C<m> �ཻ��һ��ʱ�������һ��ƽ�� C<alpha> ʹ�� C<l> �� C<m>
-���� C<alpha> �ϣ��� C<l> ��ƽ���� C<m>.
+当两条直线 C<l> 和 C<m> 相交于一点时，则存在一个平面 C<alpha> 使得 C<l> 和 C<m>
+都在 C<alpha> 上，且 C<l> 不平行于 C<m>.
 
     \?l, \?m, meet(?l, ?m, ?)
     =>
@@ -327,20 +329,20 @@ GoalMatch ģ������û�������֤��Ŀ����������֪��ʵ�е�ƥ�估��صĽ��͹�����
         ?l [on] ?alpha, ?m [on] ?alpha,
         ?l [~//] ?m.
 
-����ĵ����ʺű��� (?) ��ʾ��ͨ�����(wildcard).
+这里的单个问号变量 (?) 表示“通配符”(wildcard).
 
 =item *
 
-��ֱ�� C<l> ��ƽ�� C<alpha> �ཻ��һ�㣬�� C<l> �Ȳ�ƽ���� C<alpha>��Ҳ���� C<alpha>
-֮�ϣ�
+若直线 C<l> 和平面 C<alpha> 相交于一点，则 C<l> 既不平行于 C<alpha>，也不在 C<alpha>
+之上：
 
     \?l, #?alpha, meet(?l, ?alpha, ?) => ?l [~//] ?alpha, ?l [~on] ?alpha.
 
 =item *
 
-��ֱ�� C<l> ��ƽ�� C<alpha> �ϵ�ͶӰΪֱ�� C<m>�������һ��ƽ�� C<theta> ʹ�� (1) C<l>
-�� C<alpha> б����(2) C<l> �� C<theta> ��, (3) C<theta> �� C<alpha> �ཻ�� C<m>, ����
-(4) C<theta> �� C<alpha> ��ֱ��
+若直线 C<l> 在平面 C<alpha> 上的投影为直线 C<m>，则存在一个平面 C<theta> 使得 (1) C<l>
+与 C<alpha> 斜交，(2) C<l> 在 C<theta> 上, (3) C<theta> 与 C<alpha> 相交于 C<m>, 并且
+(4) C<theta> 与 C<alpha> 垂直：
 
     \?l, #?alpha, \?m, project(?l, ?alpha, ?m)
     =>
@@ -351,7 +353,7 @@ GoalMatch ģ������û�������֤��Ŀ����������֪��ʵ�е�ƥ�估��صĽ��͹�����
 
 =item *
 
-��ƽ�� C<alpha> ��ֱ�� C<l> ֮�����ĳ���ض��Ĺ�ϵ R, �� C<l> �� C<alpha> �����㣨�����ɣ���
+若平面 C<alpha> 与直线 C<l> 之间存在某个特定的关系 R, 则 C<l> 与 C<alpha> 亦满足（交换律）：
 
     #?alpha, \?l, ?alpha [?R] ?l => ?l [?R] ?alpha.
 
@@ -359,46 +361,46 @@ GoalMatch ģ������û�������֤��Ŀ����������֪��ʵ�е�ƥ�估��صĽ��͹�����
 
 =head2 F<vectorize.xclp>
 
-���ļ�������ִ�С�����������������й���
+本文件包含了执行“向量化”步骤的所有规则。
 
-=head3 ���߹�ϵ��������
+=head3 线线关系的向量化
 
-��ֱ�� C<l> ��ֱ�� C<m> ֮����ڹ�ϵ C<R>, ������ C<l> ������ C<m> ֮��
-����ڹ�ϵ C<R>.
+若直线 C<l> 与直线 C<m> 之间存在关系 C<R>, 则向量 C<l> 与向量 C<m> 之间
+亦存在关系 C<R>.
 
     \?l, \?m, ?l [?R] ?m => ?l <?R> ?m.
 
-=head3 �����ϵ��������
+=head3 线面关系的向量化
 
 =over
 
 =item *
 
-��ֱ�� C<l> ��ƽ�� C<alpha> ��ֱ�������� C<l> ������ C<alpha> ƽ�У�
+若直线 C<l> 与平面 C<alpha> 垂直，则向量 C<l> 与向量 C<alpha> 平行：
 
     \?l, #?alpha, ?l [T] ?alpha  => ?l <//> ?alpha.
 
 =item *
 
-��ֱ�� C<l> ��ƽ�� C<alpha> ƽ�У������� C<l> ������ C<alpha> ��ֱ��
+若直线 C<l> 与平面 C<alpha> 平行，则向量 C<l> 与向量 C<alpha> 垂直：
 
     \?l, #?alpha, ?l [//] ?alpha => ?l <T> ?alpha.
 
 =item *
 
-��ֱ�� C<l> ��ƽ�� C<alpha> б���������� C<l> ������ C<alpha> ��б����
+若直线 C<l> 与平面 C<alpha> 斜交，则向量 C<l> 与向量 C<alpha> 亦斜交：
 
     \?l, #?alpha, ?l [X] ?alpha  => ?l <X> ?alpha.
 
 =item *
 
-��ֱ�� C<l> ��ƽ�� C<alpha> �ϣ������� C<l> ������ C<alpha> ��ֱ��
+若直线 C<l> 在平面 C<alpha> 上，则向量 C<l> 与向量 C<alpha> 垂直：
 
     \?l, #?alpha, ?l [on] ?alpha => ?l <T> ?alpha.
 
 =item *
 
-������ϵ�ķ���Ȼ��
+上述关系的否定亦然：
 
     \?l, #?alpha, ?l [~T] ?alpha  => ?l <~//> ?alpha.
     \?l, #?alpha, ?l [~//] ?alpha => ?l <~T> ?alpha.
@@ -406,173 +408,173 @@ GoalMatch ģ������û�������֤��Ŀ����������֪��ʵ�е�ƥ�估��صĽ��͹�����
 
 =back
 
-=head3 �����ϵ��������
+=head3 面面关系的向量化
 
-��ƽ�� C<alpha> ��ƽ�� C<beta> �����ϵ C<R>, ���������ռ��У�C<alpha> �� C<beta> ��
-�����ϵ C<R>.
+若平面 C<alpha> 与平面 C<beta> 满足关系 C<R>, 则在向量空间中，C<alpha> 与 C<beta> 亦
+满足关系 C<R>.
 
     #?alpha, #?beta, ?alpha [?R] ?beta => ?alpha <?R> ?beta.
 
 =head2 F<vector-eval.xclp>
 
-���ļ��еĹ����������ռ��ڵġ������򡱣����ڴ���֪��������ϵ�Ƴ�ȫ�µ�������ϵ��
-��Щ���������� VRG ϵͳ֪ʶ��B<����>��
+此文件中的规则都是向量空间内的“求解规则”，用于从已知的向量关系推出全新的向量关系。
+这些规则是整个 VRG 系统知识的B<核心>。
 
 =over
 
 =item *
 
-��֪ C<a>, C<b>, C<c> ������������ C<a> // C<b>, C<b> �� C<c> �����ϵ C<R>,
-�� C<c> ��ͬ�� C<a>���� C<a> �� C<c> �������ϵ C<R>.
+已知 C<a>, C<b>, C<c> 都是向量，若 C<a> // C<b>, C<b> 与 C<c> 满足关系 C<R>,
+且 C<c> 不同于 C<a>，则 C<a> 与 C<c> 亦满足关系 C<R>.
 
     ?a <//> ?b, ?b <?R> ?c, ?a \= ?c
     => ?a <?R> ?c.
 
-��һ������������ǣ�������Ĺ�ϵ����ͨ����ƽ�С���ϵ���д��ݡ������弸�οռ��У�
-���ඨ������������۶���Ӧ����һ������
+这一条规则的意义是，向量间的关系可以通过“平行”关系进行传递。在立体几何空间中，
+许多定理、定义和推论都对应于这一条规则。
 
-���������ѧ�α�"���弸��"һ�������й����Ͷ����Ǳ�����������������������
-����ı�����ʽ��
+比如高中数学课本"立体几何"一章有下列公理和定理是本条向量规则在立几语义中
+特殊的表现形式：
 
 =over
 
-=item * ƽ�й���
+=item * 平行公理
 
-=item * ֱ�ߺ�ƽ�洹ֱ���ж����� II
+=item * 直线和平面垂直的判定定理 II
 
-=item * ֱ�ߺ�ƽ�洹ֱ�����ʶ���
+=item * 直线和平面垂直的性质定理
 
-=item * ֱ�ߺ�ƽ�洹ֱ�����ʶ��� II
+=item * 直线和平面垂直的性质定理 II
 
-=item * ����ƽ��ƽ�е����ʶ��� II
+=item * 两个平面平行的性质定理 II
 
-=item * ����ƽ��ƽ�е����ʶ��� III
+=item * 两个平面平行的性质定理 III
 
-=item * ����ƽ�洹ֱ���ж�����
+=item * 两个平面垂直的判定定理
 
-=item * ֱ�ߺ�ƽ��ƽ�е��ж�����
+=item * 直线和平面平行的判定定理
 
-=item * ƽ�����鶨��
+=item * 平行线组定理
 
 =back
 
-���ǿ�����һ�������������Ӧ�����֮������������͹���������������Ͻ�����
-����������Ч�ؽ�ʾ�������ϵ�ı��ʡ�
+我们看到，一条向量化规则对应到如此之多的立几定理和公理。从这个意义上讲，向
+量化方法有效地揭示出立体关系的本质。
 
 =item *
 
-��֪ C<a> �� C<b> ������������ C<a> ��ֱ������ C<b>, ���� C<a> �� C<b> б����
-�� C<a> ��ƽ���� C<b>.
+已知 C<a> 和 C<b> 都是向量，若 C<a> 垂直于向量 C<b>, 或者 C<a> 与 C<b> 斜交，
+则 C<a> 不平行于 C<b>.
 
     ?a <T> ?b; ?a <X> ?b => ?a <~//> ?b.
 
-��������ʵ��ʾ����ʵ���ǡ���ƽ�С��Ķ��塣֮����ר�ű�дһ����������������ƽ�С�
-��ϵ������Ϊ����ƽ�С����������������а����Źؼ��ԵĽ�ɫ��
+本规则其实揭示的其实就是“不平行”的定义。之所以专门编写一条规则来产生“不平行”
+关系，是因为“不平行”在下面这条规则中扮演着关键性的角色。
 
 =item *
 
-��֪ C<a>, C<b>, C<c>, C<d> �ĸ������������й�ϵ��C<a> ��ֱ�� C<b>, C<b> ��ֱ�� C<c>,
-C<c> ��ֱ�� C<d>, C<d> ��ֱ�� C<a>, C<a> ��ƽ���� C<c>, �� C<b> ��ͬ�� C<d>,
-���� C<b // d>.
+已知 C<a>, C<b>, C<c>, C<d> 四个向量满足下列关系：C<a> 垂直于 C<b>, C<b> 垂直于 C<c>,
+C<c> 垂直于 C<d>, C<d> 垂直于 C<a>, C<a> 不平行于 C<c>, 且 C<b> 不同于 C<d>,
+则有 C<b // d>.
 
     ?a <T> ?b, ?b <T> ?c, ?c <T> ?d, ?d <T> ?a, ?a <~//> ?c, ?b \= ?d
     => ?b <//> ?d.
 
-�ڸ�����ѧ�α��������¶����Ǹ���������ġ����������ʽ����
+在高中数学课本中有如下定理是该向量规则的“特殊表现形式”：
 
 =over
 
-=item * ֱ�ߺ�ƽ��ƽ�е����ʶ���
+=item * 直线和平面平行的性质定理
 
-=item * ֱ�ߺ�ƽ�洹ֱ���ж�����
+=item * 直线和平面垂直的判定定理
 
-=item * ����ƽ��ƽ�е��ж�����
+=item * 两个平面平行的判定定理
 
-=item * ����ƽ��ƽ�е����ʶ���
+=item * 两个平面平行的性质定理
 
-=item * ����ƽ�洹ֱ�����ʶ���
+=item * 两个平面垂直的性质定理
 
-=item * �����߶���
+=item * 三垂线定理
 
-=item * �����߶����涨��
+=item * 三垂线定理逆定理
 
 =back
 
 =item *
 
-������ C<a> ������ C<b> �����ϵ C<R>���� C<b> �� C<a> �������ϵ C<R>.
+若向量 C<a> 与向量 C<b> 满足关系 C<R>，则 C<b> 与 C<a> 亦满足关系 C<R>.
 
     ?a <?R> ?b => ?b <?R> ?a.
 
-���������ʾ����������ϵ���㽻���ɡ�
+这条规则揭示的是向量关系满足交换律。
 
 =back
 
 =head2 F<anti-vectorize.xclp>
 
-���ļ��еļ�������ִ�С����������������������� F<vectorize.xclp> �й���ġ���������������
-������������
+本文件中的几条规则执行“逆向量化”操作，正好是 F<vectorize.xclp> 中规则的“反函数”，比如
+逆向量化规则
 
     \?l, #?alpha, ?l <T> ?alpha => ?l [~T] ?alpha, ?l [~X] ?alpha.
 
-�ĺ����ǣ�����������ռ��У����� C<l> ��ֱ������ C<alpha>���������弸�οռ��У�C<l>
-��ֱ�ߣ�C<alpha> ��ƽ�棬�����������ռ��У�ֱ�� C<l> ����ֱ��ƽ�� C<alpha>����
-ֱ�� C<l> ��б����ƽ�� C<alpha>.
+的含义是：如果在向量空间中，向量 C<l> 垂直于向量 C<alpha>，且在立体几何空间中，C<l>
+是直线，C<alpha> 是平面，则有在立几空间中，直线 C<l> 不垂直于平面 C<alpha>，且
+直线 C<l> 不斜交于平面 C<alpha>.
 
 =head2 F<goal-match.xclp>
 
-���ļ��еĹ���ʹ���û�������֤��Ŀ����ѵõ�����ʵ����ƥ�䡣
+本文件中的规则使用用户给定的证明目标对已得到的事实进行匹配。
 
 =over
 
 =item *
 
-���û���֤ C<a> �� C<b> �������ռ���ڹ�ϵ C<R>, ����ʵ����ȷʵ���ڸ���ʵ��
-������ solved ��ʵָʾĿ���ѽ����
+若用户求证 C<a> 与 C<b> 在立几空间存在关系 C<R>, 且事实库中确实存在该事实，
+则生成 solved 事实指示目标已解决。
 
     ?a *[?R] ?b, ?a [?R] ?b
     => solved(space-relation, ?R, ?a, ?b).
 
 =item *
 
-���û���֤ C<a> �� C<b> �������ռ���ڹ�ϵ C<R>������ʵ���в����ڸ���ʵ��
-������ pending ��ʵ��ָʾ��Ŀ�ꡰδ������
+若用户求证 C<a> 与 C<b> 在立几空间存在关系 C<R>，且事实库中不存在该事实，
+则生成 pending 事实以指示该目标“未决”。
 
     ?a *[?R] ?b, ~exists(?a [?R] ?b)
     => pending(space-relation, ?R, ?a, ?b).
 
 =item *
 
-���û��������й� C<a> �� C<b> ��һ��֤Ŀ��δ��������ʵ���д��� C<a> �� C<b>
-֮��ȷ����ĳ�ֹ�ϵ�������� hint ��ʵ������ʾ�û���
+若用户给定的有关 C<a> 和 C<b> 的一求证目标未决，且事实库中存在 C<a> 与 C<b>
+之间确定的某种关系，则生成 hint 事实，以提示用户。
 
     pending(space-relation, ?, ?a, ?b), ?a [?R] ?b
     => hint(space-relation, ?R, ?a, ?b).
 
 =back
 
-=head1 ֪ʶ����������Լ��� DBC
+=head1 知识库的完整性自检与 DBC
 
-������������֮�⣬֪ʶ���л���¼�������Լ��������ڼ����ʵ���ڲ��������ԡ�
-��Щ��ʩ������Ч�ؼ����û�������ʵ֮��ĳ�ͻ��֪ʶ�����֮��ĳ�ͻ���Լ���
-����ʽ�� VRG bug.
+除了上述规则之外，知识库中还收录了许多自检测规则，用于检测事实库内部的完整性。
+这些设施可以有效地检测出用户给定事实之间的冲突、知识库规则之间的冲突，以及其
+他形式的 VRG bug.
 
-��ʵ�ϣ��� VRG �����ڣ���Щ�Լ�����ȷʵ��׽��������������̨��δ��׽���� bugs��
+事实上，在 VRG 的早期，这些自检测规则确实捕捉到不少连题库测试台都未捕捉到的 bugs。
 
-һ�����͵��Լ�������£�
+一条典型的自检规则如下：
 
     \?l, #?alpha, ?l [on] ?alpha, ?l [~on] ?alpha
     => contradiction("[on]", "[~on]", ?l, ?alpha).
 
-�京���ǣ�һ��ֱ��Ҫô��һ��ƽ���ϣ�Ҫ�������Ǹ�ƽ���ϡ����ͬʱ������������ʵ��
-������ contradction ��ʵָʾì�ܳ�ͻ�Ĵ��ڡ�
+其含义是：一条直线要么在一个平面上，要不不在那个平面上。如果同时存在这两个事实，
+则生成 contradction 事实指示矛盾冲突的存在。
 
-�������Բ����߼���ϵͳ������ʵ�ַ���һ�������������г�Ϊ Design by contract (DBC).
-VRG ��ʵ���������ڻ��ڹ����ϵͳ��ʵ�� DBC Ҫ�ȴ�ͳ������ʽ����Ҫ�������Ȼ�öࡣ
+将完整性测试逻辑与系统自身的实现放在一起，在软件工程中称为 Design by contract (DBC).
+VRG 的实践表明，在基于规则的系统中实现 DBC 要比传统的命令式语言要方便和自然得多。
 
-=head1 ֪ʶ��� Subversion �ֿ�
+=head1 知识库的 Subversion 仓库
 
-�����ǿ��Դ������ Subversion (SVN) �ֿ�ȡ�����°汾�� VRG ֪ʶ�⣺
+您总是可以从下面的 Subversion (SVN) 仓库取得最新版本的 VRG 知识库：
 
 L<https://svn.berlios.de/svnroot/repos/unisimu/VRG/knowledge>
 
@@ -582,16 +584,16 @@ L<https://svn.berlios.de/svnroot/repos/unisimu/VRG/knowledge>
 
 =item *
 
-�� C<line> �� C<plane> ν�ʵĻ��������� C<point> ν��������ʽ���������ε㡣
+在 C<line> 和 C<plane> 谓词的基础上引入 C<point> 谓词用于显式地声明几何点。
 
-��Ȼ��ǰ֪ʶ����ͨ��ʹ����ʽ�ĵ�������������ơ����߽���һ�㡱��������
-����ʽ�ĵ�������ɻ���߹���Ŀɶ��Ժ�֪ʶ��Ŀ���չ�ԡ�
+虽然当前知识库已通过使用隐式的点对象来处理类似“两线交于一点”的条件，
+但显式的点对象无疑会提高规则的可读性和知识库的可扩展性。
 
 =back
 
 =head1 COPYRIGHT
 
-Copyright 2006 by Agent Zhang (���ഺ). All rights reserved.
+Copyright 2006 by Agent Zhang (章亦春). All rights reserved.
 
 =head1 SEE ALSO
 

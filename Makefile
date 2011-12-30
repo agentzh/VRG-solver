@@ -1,4 +1,3 @@
-SHELL := cmd
 PERL_BIN := E:/perl/bin
 PERL_LIB := E:/perl/site/lib
 
