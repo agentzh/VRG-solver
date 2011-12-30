@@ -9,3 +9,4 @@ knowledge/goal-match.clp
 knowledge/vector-eval.clp
 knowledge/vectorize.clp
 lib/VRG/Compiler.pm
+doc/*.html

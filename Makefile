@@ -1,16 +1,9 @@
-PERL_BIN := E:/perl/bin
-PERL_LIB := E:/perl/site/lib
-
 sample_vrg_files := $(wildcard sample/*.vrg)
 sample_png_files := $(patsubst %.vrg,%.png,$(sample_vrg_files))
 
 xpro := perl xprolog/xpro.pl
 xclp := xclips -I knowledge -c
 vrg_run := perl -Ilib script/vrg-run.pl
-
-rm_f = perl -MExtUtils::Command -e rm_f
-mv_f = perl -MExtUtils::Command -e mv
-cp_f = perl -MExtUtils::Command -e cp
 
 xpro_files := $(wildcard xprolog/*.xpro)
 pro_files  := $(patsubst %.xpro,%.pro, $(xpro_files))
@@ -22,6 +15,8 @@ vpath %.xclp knowledge
 vpath %.grammar grammar
 vpath %.pl script xprolog
 
+.PHONY: all clips_all prolog_all clean veryclean doc
+
 all: clips_all
 
 clips_all: lib/VRG/Compiler.pm $(clp_files)
@@ -29,8 +24,9 @@ clips_all: lib/VRG/Compiler.pm $(clp_files)
 prolog_all: $(pro_files)
 
 lib/VRG/Compiler.pm: vrgs.grammar
+	mkdir -p lib/VRG
 	perl -s -MParse::RecDescent - -RD_HINT $< VRG::Compiler
-	$(mv_f) Compiler.pm $@
+	mv Compiler.pm $@
 
 %.pro: %.xpro xprolog/xpro.pl
 	$(xpro) $<
@@ -46,16 +42,19 @@ testprolog: prolog_all
 testall: prolog_all clips_all
 	prove -I../xclips/lib -Ilib t/*.t xprolog/*.t
 
+doc:
+	cd doc && $(MAKE)
+
 test: clips_all
 	prove -I../xclips/lib -Ilib t/*.t
 
 clean:
-	$(rm_f) xprolog/*.pro xprolog/0*.xpro 0*.xclp *.clp *.vrg \
+	rm -f xprolog/*.pro xprolog/0*.xpro 0*.xclp *.clp *.vrg \
 		sample/*.clp sample/*.xclp *.png
 	clips-cover -d
 
 veryclean: clean
-	$(rm_f) lib/VRG/Compiler.pm \
+	 lib/VRG/Compiler.pm \
 		knowledge/*.clp
 
 sample: $(sample_png_files)
