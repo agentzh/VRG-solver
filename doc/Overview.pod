@@ -165,6 +165,13 @@ VRG 的知识库全部是使用我自主设计和实现的通用目的专家系�
 
 由于使用了可扩展的 XClips 语言，VRG 的知识库非常简洁，非常清晰。
 
+有关 XClips 语言的更多信息，请参见我的"Introduction to XClips"
+讲座的幻灯片：
+
+L<http://agentzh.org/misc/slides/xclips/>
+
+请在浏览器中打开播放，同时使用方向键翻页。
+
 =head1 VRG 在底层采用了什么样的推理引擎？
 
 VRG 在底层使用了美国航空航天局约翰逊太空中心开发的正向链推理机 CLIPS. 事实上，

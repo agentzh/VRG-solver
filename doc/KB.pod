@@ -68,7 +68,9 @@ C<beta> 和 C<l>.
 这些其实都是 XClips 语言的语法。有关 XClips 语言的更多信息，请参见我的"Introduction to XClips"
 讲座的幻灯片：
 
-L<http://perlcabal.org/~agentzh/slides/xclips/xclips.pdf>
+L<http://agentzh.org/misc/slides/xclips/>
+
+请在浏览器中打开播放，同时使用方向键翻页。
 
 =head1 知识库的建模对象
 
