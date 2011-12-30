@@ -62,8 +62,3 @@ sample: $(sample_png_files)
 sample/%.png: sample/%.vrg clips_all
 	$(vrg_run) $<
 
-install:
-	pl2bat script/xclips.pl script/clips-cover.pl
-	$(cp_f) script/xclips.bat $(PERL_BIN)
-	$(cp_f) script/clips-cover.bat $(PERL_BIN)
-	$(cp_f) lib/VRG/Compiler.pm $(PERL_LIB)/VRG

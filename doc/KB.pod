@@ -2,18 +2,14 @@
 
 =head1 NAME
 
-KB - VRG 知识库简介
-
-=head1 AUTHOR
-
-Agent Zhang (章亦春) E<lt>agentzh@gmail.comE<gt>
+KB - VRG 解题系统的知识库简介
 
 =head1 VERSION
 
-   Maintainer: Agent Zhang <agentzh@gmail.com>
+   Maintainer: Zhang "agentzh" Yichun <agentzh@gmail.com>
    Date: 26 Dec 2006
-   Last Modified: 26 Dec 2006
-   Version: 0.01
+   Last Modified: 30 Dec 2011
+   Version: 0.02
 
 =head1 DESCRIPTION
 
@@ -574,9 +570,9 @@ VRG 的实践表明，在基于规则的系统中实现 DBC 要比传统的命�
 
 =head1 知识库的 Subversion 仓库
 
-您总是可以从下面的 Subversion (SVN) 仓库取得最新版本的 VRG 知识库：
+您总是可以从下面的 Git 仓库取得最新版本的 VRG 知识库：
 
-L<https://svn.berlios.de/svnroot/repos/unisimu/VRG/knowledge>
+L<https://github.com/agentzh/VRG-solver>
 
 =head1 TODO
 
@@ -591,10 +587,15 @@ L<https://svn.berlios.de/svnroot/repos/unisimu/VRG/knowledge>
 
 =back
 
+=head1 AUTHOR
+
+Zhang "agentzh" Yichun (章亦春) E<lt>agentzh@gmail.comE<gt>
+
 =head1 COPYRIGHT
 
-Copyright 2006 by Agent Zhang (章亦春). All rights reserved.
+Copyright 2006-2011 by Zhang "agentzh" Yichun (章亦春). All rights reserved.
 
 =head1 SEE ALSO
 
-L<Overview>
+VRG 解题系统概览: L<http://agentzh.org/misc/vrg/Overview.html>
+

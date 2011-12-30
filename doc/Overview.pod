@@ -2,22 +2,14 @@
 
 =head1 NAME
 
-Overview - VRG 专家系统概览
-
-=head1 AUTHOR
-
-章亦春 E<lt>agentzh@gmail.comE<gt>
-
-3030602110 计算机0304班
-
-计算机科学与通信工程学院 江苏大学
+Overview - VRG 解题系统概览
 
 =head1 VERSION
 
-   Maintainer: Agent Zhang <agentzh@gmail.com>
+   Maintainer: Zhang "agentzh" Yichun <agentzh@gmail.com>
    Date: 24 Dec 2006
-   Last Modified: 24 Dec 2006
-   Version: 0.01
+   Last Modified: 30 Dec 2011
+   Version: 0.02
 
 =head1 VRG 是什么？
 
@@ -185,22 +177,27 @@ CLIPS 之上的。
 
 VRG 的构件和依赖项都是高度可移植的，包括 CLIPS, perl, Graphviz, 因此可以不加修
 改地运行在包括 Windows, Linux, FreeBSD, Solaris 在内的多种操作系统上。目前，
-我只在 Windows XP 和 Windows 2000 上进行过测试。
+我在 Linux，Windows XP，Windows 2000 上进行过测试。
 
 =head1 如何获取 VRG ?
 
-您总是可以从下面的 SVN 仓库获得 VRG 最新版本的源代码：
+您总是可以从下面的 Git 仓库获得 VRG 最新版本的源代码：
 
-L<http://svn.berlios.de/svnroot/repos/unisimu/VRG>
+L<https://github.com/agentzh/VRG-solver>
 
 =head1 如何加入 VRG 的开发工作？
 
 如果您想帮助完善 VRG 系统，请发送电子邮件告知作者。谢谢！
 
+=head1 AUTHOR
+
+Zhang "agentzh" Yichun (章亦春) E<lt>agentzh@gmail.comE<gt>
+
 =head1 COPYRIGHT
 
-Copyright 2006 by Agent Zhang (章亦春). All rights reserved.
+Copyright 2006-2011 by Zhang "agentzh" Yichun (章亦春). All rights reserved.
 
 =head1 SEE ALSO
 
-L<KB>
+VRG 解题系统的知识库简介: L<http://agentzh.org/misc/vrg/KB.html>
+
