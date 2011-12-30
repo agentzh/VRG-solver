@@ -1,0 +1,26 @@
+This is a problem solver for 3-dimensional geometrical qualitative problems for high schools.
+
+Installation
+
+    1. install CLIPS to your system:
+
+        http://clipsrules.sourceforge.net/
+
+    1. install XClips to your system:
+
+        https://github.com/agentzh/xclips
+
+    2. Build this project via Gnu make:
+
+        make
+
+    3. Run the test suite
+
+        make test
+
+Check the (Chinese) documentation for how to use this program:
+
+    * http://agentzh.org/misc/vrg/Overview.html
+
+    * http://agentzh.org/misc/vrg/KB.html
+
